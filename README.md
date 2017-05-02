@@ -36,5 +36,5 @@ CC-BY
 Author Information
 ------------------
 
-You can contact me at rodrigorega@gmail.com
-My website: http://rodrigorega.es
+- You can contact me at rodrigorega@gmail.com
+- My website: http://rodrigorega.es
