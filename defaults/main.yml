@@ -1,0 +1,6 @@
+---
+# defaults file for clrmamepro
+
+clrmamepro_download_page_url: "https://mamedev.emulab.it/clrmamepro/"
+clrmamepro_install_dir: "/tmp/clrmamepro_ansible"
+clrmamepro_final_user: "john_doe"

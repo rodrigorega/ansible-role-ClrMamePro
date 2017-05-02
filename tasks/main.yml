@@ -1,0 +1,61 @@
+---
+# tasks file for clrmamepro
+
+- name: "Install wine and dependencies"
+  apt: pkg="{{ item }}" state=installed force=yes
+  with_items:
+    - wine
+    - wine64
+    - winbind
+    - mono-runtime
+  tags:
+    - wine_install
+    - clrmamepro_install
+
+- name: "Compose download URL"
+  shell: curl -s "{{ clrmamepro_download_page_url }}" | egrep -i "32\.exe" | awk -F '"' '{print $2}'
+  register: clrmamepro_download_file
+  tags:
+    - clrmamepro_install
+
+- name: "Create work dir"
+  file:
+    path: "{{ clrmamepro_install_dir}}"
+    state: directory
+  tags:
+    - clrmamepro_install
+
+- name: "Download ClrMamePro"
+  shell: "wget {{ clrmamepro_download_page_url }}/{{ clrmamepro_download_file.stdout }} -O {{ clrmamepro_install_dir}}/clrmamepro.exe"
+  register: clrmamepro_down_info
+  tags:
+    - clrmamepro_install
+
+- name: "Install ClrMamePro"
+  shell: "wine {{ clrmamepro_install_dir}}/clrmamepro.exe"
+  sudo: yes
+  sudo_user: "{{ clrmamepro_final_user }}"
+  tags:
+    - clrmamepro_install
+
+- name: "Delete work dir"
+  file:
+    path: "{{ clrmamepro_install_dir}}"
+    state: absent
+  tags:
+    - clrmamepro_install
+
+- name: "ClrMamePro main window fix"
+  lineinfile:
+    dest: "/home/{{ clrmamepro_final_user }}/.wine/drive_c/Program\ Files/clrmamepro/cmpro.ini"
+    line: "{{ item }}"
+    backup: yes
+    create: yes
+    state: present
+    owner: "{{ clrmamepro_final_user }}"
+    group: "{{ clrmamepro_final_user }}"
+  with_items:
+    - "[CMPRO SETTINGS]"
+    - "Adv_HideWindow = off"
+  tags:
+    - clrmamepro_install
