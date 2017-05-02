@@ -206,9 +206,9 @@ galaxy_info:
   #- system
   #- web
   galaxy_tags:
-    - acme
+    - roms
     - installer
-    - web
+    - wine
 dependencies: []
   # List your role dependencies here, one per line. Only
   # dependencies available via galaxy should be listed here.
