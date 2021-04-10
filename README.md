@@ -1,7 +1,7 @@
 ClrMamePro
 =========
 
-Install ClrMamePro in Debian Jessie using Wine.
+Install ClrMamePro in Debian 10 (Buster) using Wine.
 
 Requirements
 ------------
@@ -37,4 +37,4 @@ Author Information
 ------------------
 
 - You can contact me at rodrigorega@gmail.com
-- My website: http://rodrigorega.es
+- My website: https://rodrigorega.es
