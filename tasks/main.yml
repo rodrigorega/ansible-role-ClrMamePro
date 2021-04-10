@@ -14,11 +14,13 @@
 
 - name: "Compose download URL"
   shell: curl -s "{{ clrmamepro_download_page_url }}" | egrep -i "32\.exe" | awk -F '"' '{print $2}'
+  changed_when: false
   register: clrmamepro_download_file
   tags:
     - clrmamepro_install
 
 - name: "Create work dir"
+  changed_when: false
   file:
     path: "{{ clrmamepro_install_dir}}"
     state: directory
@@ -27,6 +29,7 @@
 
 - name: "Download ClrMamePro"
   shell: "wget {{ clrmamepro_download_page_url }}/{{ clrmamepro_download_file.stdout }} -O {{ clrmamepro_install_dir}}/clrmamepro.exe"
+  changed_when: false
   register: clrmamepro_down_info
   tags:
     - clrmamepro_install
@@ -39,6 +42,7 @@
     - clrmamepro_install
 
 - name: "Delete work dir"
+  changed_when: false
   file:
     path: "{{ clrmamepro_install_dir}}"
     state: absent
