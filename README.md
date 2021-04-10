@@ -24,7 +24,7 @@ Example Playbook
     - hosts: localhost
       connection: local
       roles:
-        - { role: ansible-role-ClrMamePro, clrmamepro_final_user: john_doe }
+        - { role: rodrigorega.ansible_role_clrmamepro, clrmamepro_final_user: john_doe }
 
 Run the playbook with: "ansible-playbook clrmamepro.yml"
 
