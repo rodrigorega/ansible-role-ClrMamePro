@@ -35,9 +35,10 @@
     - clrmamepro_install
 
 - name: "Install ClrMamePro"
-  shell: "wine {{ clrmamepro_install_dir}}/clrmamepro.exe"
+  shell: "export DISPLAY=:0; wine {{ clrmamepro_install_dir}}/clrmamepro.exe"
   become: yes
   become_user: "{{ clrmamepro_final_user }}"
+  become_method: su
   tags:
     - clrmamepro_install
 
